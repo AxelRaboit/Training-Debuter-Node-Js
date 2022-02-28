@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <div style='width: 50%; margin: auto;'>
+
+        <%- include('./components/_header') %>
+
+        <section>
+            <form action="">
+                <label for="title">Title</label><br>
+                <input type="text" id='title' name='title'><br>
+
+                <label for="description">Description</label><br>
+                <textarea type="text" id='description' name='description' cols='20' rows='5'></textarea><br>
+
+                <input type='submit' value='Submit'></input>
+            </form>
+            <hr>
+        </section>
+        <section>
+            <h2>Liste des notes</h2>
+            <ul>
+                <% for(i=0;i<notes.length;i++) { %>
+                    <li><%= notes[i].title + ' : ' + notes[i].description %></li>
+                <% } %> 
+            </ul>
+        </section>
+    </div>
+</body>
+</html>
