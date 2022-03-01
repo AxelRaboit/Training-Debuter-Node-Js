@@ -12,7 +12,9 @@
         <%- include('./components/_header') %>
 
         <section>
-            <form action="">
+            <form action="/notes" method="post">
+                <input type="hidden" name="id" id="id">
+
                 <label for="title">Title</label><br>
                 <input type="text" id='title' name='title'><br>
 
@@ -25,12 +27,40 @@
         </section>
         <section>
             <h2>Liste des notes</h2>
-            <ul>
-                <% for(i=0;i<notes.length;i++) { %>
-                    <li><%= notes[i].title + ' : ' + notes[i].description %></li>
-                <% } %> 
-            </ul>
+            <% for(i=0;i<result.length;i++) { %>
+                <h3><%= result[i].title %></h3>
+                <p><%= result[i].description %></p>
+                <input
+                    type="button"
+                    value="Delete"
+                    onclick="deleteData('<%= result[i].id %>')"
+                >
+                <input 
+                    type="button"
+                    value="Edit"
+                    onclick="fillData('<%= result[i].id %>', '<%= result[i].title %>', '<%= result[i].description %>')"
+                >
+            <% } %> 
         </section>
     </div>
 </body>
+<script>
+    function fillData(id, title, description) {
+        document.getElementById('id').value = id;
+        document.getElementById('title').value = title;
+        document.getElementById('description').value = description;
+    }
+
+    function deleteData(id) {
+        let endPoint = 'notes/' + id
+        fetch(endPoint, {method: 'DELETE'}
+        ).then(
+            (res) => res.json()
+        ).then(
+            (data) => window.location.href = data.routeRacine
+        ).catch((err) => {
+            console.log(err)
+        })
+    }
+</script>
 </html>
