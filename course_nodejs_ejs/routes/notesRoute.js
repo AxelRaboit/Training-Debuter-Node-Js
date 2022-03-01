@@ -7,10 +7,14 @@ router.get('/', (req, res) => {
     req.getConnection((err, connection) => {
         if(err) {
             console.log(err)
+            //le premier parametre de render est le nom du fichier sans l'extension
+            res.status(500).render('error', {err})
         } else {
             connection.query('SELECT * FROM notes', [], (err, result) => {
                 if(err) {
                     console.log(err)
+                    //le premier parametre de render est le nom du fichier sans l'extension
+                    res.status(500).render('error', {err})
                 } else {
                     res.status(200).render('index', { result });
                 }
@@ -39,6 +43,8 @@ router.post('/notes', (req, res) => {
     req.getConnection((err, connection) => {
         if(err) {
             console.log(err)
+            //le premier parametre de render est le nom du fichier sans l'extension
+            res.status(500).render('error', {err})
         } else {
             connection.query(
             reqSql,
@@ -46,6 +52,8 @@ router.post('/notes', (req, res) => {
             (err, result) => {
                 if(err) {
                     console.log(err)
+                    //le premier parametre de render est le nom du fichier sans l'extension
+                    res.status(500).render('error', {err})
                 } else {
                     res.status(300).redirect('/');
                 }
@@ -60,10 +68,14 @@ router.delete('/notes/:id', (req, res) => {
     req.getConnection((err, connection) => {
         if(err) {
             console.log(err)
+            //le premier parametre de render est le nom du fichier sans l'extension
+            res.status(500).render('error', {err})
         } else {
             connection.query('DELETE FROM notes WHERE id = ?', [id], (err, result) => {
                 if(err) {
                     console.log(err)
+                    //le premier parametre de render est le nom du fichier sans l'extension
+                    res.status(500).render('error', {err})
                 } else {
                     res.status(200).json({routeRacine: '/'})
                 }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Error Page not found</title>
+    <title>Error</title>
 </head>
 <body>
     <div style='width: 50%; margin: auto;'>
@@ -12,8 +12,8 @@
         <%- include('./components/_header') %>
 
         <section>
-            <h2>404 Page Not Found</h2>
-            <p>The url is incorrect</p>
+            <h2>Erreur survenu</h2>
+            <p><%= err.toString() %>></p>
         </section>
     </div>
 </body>

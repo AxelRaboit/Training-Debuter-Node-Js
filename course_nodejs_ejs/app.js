@@ -26,6 +26,8 @@ app.set('views', 'IHM')
 
 //Definition des routes pour notes
 app.use(notesRoute)
+//Possibilité d'ajouter une url personalisé
+/* app.use('/notesapp', notesRoute) */
 
 app.get('/about', (req, res) => {
     res.status(200).render('about')
